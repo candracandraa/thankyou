@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .heart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        #loading-text {
+          color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px; 
+        }
+
+   
+        #heart {
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="heart-container">
+        <div class="heart" id="heart"></div>
+        <div id="loading-text"></div>
+    </div>
+
+    <script src="scrip.js"></script>
+
+    <script>
+        function showTextGradually(text, index) {
+            var loadingText = document.getElementById('loading-text');
+            if (index < text.length) {
+                loadingText.textContent += text.charAt(index);
+                setTimeout(function() {
+                    showTextGradually(text, index + 1);
+                }, 170); 
+            } else {
+                var heart = document.getElementById('heart');
+                fadeIn(heart);
+            }
+        }
+
+        function fadeIn(element) {
+            var opacity = 0;
+            element.style.display = 'block';
+            var fadeInInterval = setInterval(function() {
+                if (opacity < 1) {
+                    opacity += 0.1;
+                    element.style.opacity = opacity;
+                } else {
+                    clearInterval(fadeInInterval);
+                }
+            }, 100); 
+        }
+
+        showTextGradually("thankyou, anatasya riri. click this heart please?", 0);
+    </script>
+</body>
+</html>
